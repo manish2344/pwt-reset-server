@@ -1,0 +1,12 @@
+const express = require("express");
+require("dotenv").config();
+const app = express();
+app.use(express.json());
+const authRoute = require("./routes/auth");
+const userRoute = require("./routes/user");
+const mongodbConnection = require("./config/mongodbConnection");
+const PORT = process.env.PORT || 8000;
+app.use("/api/auth", authRoute);
+app.use("/api/user", userRoute);
+app.get("/", (req, res) => res.send("Hello manish kumar!"));
+app.listen(PORT , () => console.log(`Node JS Server Running On Port ${PORT }!`));
