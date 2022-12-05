@@ -26,7 +26,7 @@ module.exports = async (user, mailType) => {
 
     let emailContent, mailOptions;
     if (mailType == "verifyemail") {
-      emailContent = `<div><h1>Please click on the below link to verify your email address</h1> <a href="http://localhost:3001/verifyemail/${encryptedToken}">${encryptedToken}</a>  </div>`;
+      emailContent = `<div><h1>Please click on the below link to verify your email address</h1> <a href="http://localhost:3002/verifyemail/${encryptedToken}">${encryptedToken}</a>  </div>`;
       mailOptions = {
         from: process.env.EMAIL_USERNAME,
         to: user.email,
@@ -34,7 +34,7 @@ module.exports = async (user, mailType) => {
         html: emailContent,
       };
     } else {
-      emailContent = `<div><h1>Please click on the below link to reset your password</h1> <a href="http://localhost:3001/resetpassword/${encryptedToken}">${encryptedToken}</a>  </div>`;
+      emailContent = `<div><h1>Please click on the below link to reset your password</h1> <a href="http://localhost:3002/resetpassword/${encryptedToken}">${encryptedToken}</a>  </div>`;
 
       mailOptions = {
         from:process.env.EMAIL_USERNAME,
