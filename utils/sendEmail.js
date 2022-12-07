@@ -37,7 +37,7 @@ module.exports = async (user, mailType) => {
       emailContent = `<div><h1>Please click on the below link to reset your password</h1> <a href="http://localhost:3000/resetpassword/${encryptedToken}">${encryptedToken}</a>  </div>`;
 
       mailOptions = {
-        from:process.env.EMAIL_USERNAME,
+        from:"kumarmanishchuru89@gmail.com",
         to: user.email,
         subject: "Reset password For MERN Auth",
         html: emailContent,
