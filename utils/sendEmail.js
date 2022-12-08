@@ -2,6 +2,57 @@
 
 
 
+// const nodemailer = require("nodemailer");
+// const bcrypt = require("bcrypt");
+// const Token = require("../models/tokenModel");
+
+// module.exports = async (user, mailType) => {
+//   try {
+//     const transporter = nodemailer.createTransport({
+//       service: "gmail",
+//       host: "smtp.gmail.com",
+//       port: 534,
+//       secure: true,
+//       auth: {
+//         user:process.env.EMAIL_USERNAME,
+//         pass:process.env.EMAIL_PASSWORD
+//       },
+//     });
+
+//     const encryptedToken = bcrypt
+//       .hashSync(user._id.toString(), 10)
+//       .replaceAll("/", "");
+//     const token = new Token({
+//       userid: user._id,
+//       token: encryptedToken,
+//     });
+//     await token.save();
+
+//     let emailContent, mailOptions;
+//     if (mailType == "verifyemail") {
+//       emailContent = `<div><h1>Please click on the below link to verify your email address</h1> <a href="http://localhost:3000/${encryptedToken}">${encryptedToken}</a>  </div>`;
+//       mailOptions = {
+//         from:process.env.EMAIL_USERNAME,
+//         to: user.email,
+//         subject: "Verify Email For MERN Auth",
+//         html: emailContent,
+//       };
+//     } else {
+//       emailContent = `<div><h1>Please click on the below link to reset your password</h1> <a href="http://localhost:3000/resetpassword/${encryptedToken}">${encryptedToken}</a>  </div>`;
+
+//       mailOptions = {
+//         from:process.env.EMAIL_USERNAME,
+//         to: user.email,
+//         subject: "Reset password For MERN Auth",
+//         html: emailContent,
+//       };
+//     }
+
+//     await transporter.sendMail(mailOptions);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 const Token = require("../models/tokenModel");
@@ -14,8 +65,8 @@ module.exports = async (user, mailType) => {
       port: 587,
       secure: true,
       auth: {
-        user:"kumarmanishchuru89@gmail.com",
-        pass:"akjebnyhflzbldhd"
+        user: "kumarmanishchuru89@gmail.com",
+        pass: "rnxubefdppmwhmiy",
       },
     });
 
@@ -30,7 +81,8 @@ module.exports = async (user, mailType) => {
 
     let emailContent, mailOptions;
     if (mailType == "verifyemail") {
-      emailContent = `<div><h1>Please click on the below link to verify your email address</h1> <a href="http://localhost:3000/${encryptedToken}">${encryptedToken}</a>  </div>`;
+      emailContent = `<div><h1>Please click on the below link to verify your email address</h1> <a href="http://localhost:3000/verifyemail/${encryptedToken}">${encryptedToken}</a>  </div>`;
+
       mailOptions = {
         from: "kumarmanishchuru89@gmail.com",
         to: user.email,
@@ -41,7 +93,7 @@ module.exports = async (user, mailType) => {
       emailContent = `<div><h1>Please click on the below link to reset your password</h1> <a href="http://localhost:3000/resetpassword/${encryptedToken}">${encryptedToken}</a>  </div>`;
 
       mailOptions = {
-        from:"kumarmanishchuru89@gmail.com",
+        from: "kumarmanishchuru89@gmail.com",
         to: user.email,
         subject: "Reset password For MERN Auth",
         html: emailContent,
